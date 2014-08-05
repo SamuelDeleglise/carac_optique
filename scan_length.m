@@ -2,13 +2,14 @@ clear all;clear classes
 
 params = struct('resolution',128,'grid_size',400e-6,'input_waist',23E-6, 'CA_pilier', 0.025, ...
     'CA_roc', 350E-6, 'transmission',200E-6,'roc_depth',800E-9, 'w_m', (44.7E-6)^2)
-id=19;
+id=20;
 
-addpath(genpath('D:\drive\Soft\OscarV3.14\Classes'));
 addpath('jsonlab');
-
-data_path = 'D:\drive\Theorie\OscarSimu\data'
-script_backup_path = 'D:\drive\Theorie\OscarSimu\scripts'
+config_struct = loadjson('local_config.json')
+oscar_path = config_struct.oscar_path
+addpath(genpath(strcat(oscar_path,'\Classes')));
+data_path = config_struct.data_path
+script_backup_path = config_struct.script_path
 
 FileNameAndLocation=[mfilename('fullpath')];
 [pathstr,name,ext] = fileparts(FileNameAndLocation)
