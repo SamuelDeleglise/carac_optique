@@ -43,7 +43,8 @@ class Map:
             params = dic
             params["COLS"] = data.shape[0]
             params["ROWS"] = data.shape[1]
-            params[''], params['XPIXEL'] = params['pixelCal']
+            params['XPIXEL'], params['YPIXEL'] = params['pixelCal']
+            
                 
         self.params = params
         self.data = data
