@@ -3,6 +3,7 @@ from glob import glob
 import os.path as osp
 import numpy as np
 from pylab import *
+import matplotlib 
 PATH = osp.split(osp.abspath(__file__))[0]
 
 class Simu(object):
@@ -14,6 +15,13 @@ class Simu(object):
         label = ','.join([str(self.params['id']) + '_%s='%arg + str(self.params[arg]) \
                           for arg in legend])
         plot(self.data[0], 2*np.pi*1e6/(44.+self.data[1]), '-o', label=label)
+
+        xlabel('length (m)')
+        ylabel('expected finesse')
+        #legend(loc='best')
+        #show()
+        savefig(PATH + '/data/' + str(self.params['id'])+'.png')
+
         
 def load(id):
     data_name = glob(PATH + '/data/*%04i_*.csv'%id)[0]
@@ -26,14 +34,10 @@ def load(id):
     
     return res
 
-ids = [13,14,16,17,11,12]
-length_scans = [load(id) for id in ids]
-for scan in length_scans:
-    scan.plot(legend = ['resolution',
-                        'roc_depth' ,
-                        'CA_roc'])
+#ids = [13,14,16,17,11,12]
+#length_scans = [load(id) for id in ids]
+#for scan in length_scans:
+#    scan.plot(legend = ['resolution',
+#                        'roc_depth' ,
+#                        'CA_roc'])
 #yscale('log')
-xlabel('length (m)')
-ylabel('expected finesse')
-legend(loc='best')
-show()

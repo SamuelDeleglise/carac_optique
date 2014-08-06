@@ -43,12 +43,15 @@ class Map:
             params = dic
             params["COLS"] = data.shape[0]
             params["ROWS"] = data.shape[1]
-            params['YPIXEL'], params['XPIXEL'] = params['pixelCal']
+            params[''], params['XPIXEL'] = params['pixelCal']
                 
         self.params = params
         self.data = data
     
     def plot(self):
+        """
+        This plots a 2D image of the map in a new figure
+        """
         self.jai_ete_plotte = True
         figure()
         imshow(self.data, extent=[0,
